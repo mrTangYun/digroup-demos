@@ -22,14 +22,20 @@ onMounted(() => {
 })
 
 function toggleFullScreen() {
-  if (!isFullPage.value) {
-    if (!document.fullscreenElement) {
-      // If the document is not in full screen mode
-      // make the video full screen
-      fullPage.value.requestFullscreen();
-      isFullPage.value = true;
+  try{
+     if (!isFullPage.value) {
+      if (!document.fullscreenElement) {
+        // If the document is not in full screen mode
+        // make the video full screen
+        fullPage.value.requestFullscreen();
+        isFullPage.value = true;
+      }
     }
+  } catch(e) {
+    console.log(e);
   }
+  
+ 
   isStart.value = !isStart.value;
   
 }
@@ -58,7 +64,7 @@ function toggleFullScreen() {
          transform: scale(1);
      }
      to{
-         opacity: 0.5;
+         opacity: 0.3;
          transform: scale(0.9);
      }
  }
@@ -70,7 +76,7 @@ function toggleFullScreen() {
     height: 100%;
     &.start{
       animation-name: light;
-      animation-duration: 1s;
+      animation-duration: 0.3s;
       animation-timing-function: linear;
       animation-iteration-count: 2;
       animation-direction: alternate;
