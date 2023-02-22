@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-// import imgUrl from './images/底版.jpg'
 const imgUrl = new URL('./images/底版.jpg', import.meta.url).href
 const aniuimgUrl = new URL('./images/按钮.png', import.meta.url).href
 
@@ -9,7 +8,6 @@ const isStart = ref(false);
 const isFullPage = ref(false);
 const fullPage = ref(null);
 
-
 defineProps({
   msg: String,
 })
@@ -17,7 +15,6 @@ defineProps({
 onMounted(() => {
   btn.value.addEventListener('animationend', (event) => {
     isStart.value = false;
-    console.log('animationend');
   });
 })
 
@@ -27,15 +24,14 @@ function toggleFullScreen() {
       if (!document.fullscreenElement) {
         // If the document is not in full screen mode
         // make the video full screen
-        fullPage.value.requestFullscreen();
         isFullPage.value = true;
+        fullPage.value.requestFullscreen();
       }
     }
   } catch(e) {
     console.log(e);
+    isFullPage.value = true;
   }
-  
- 
   isStart.value = !isStart.value;
   
 }
