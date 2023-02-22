@@ -32,7 +32,7 @@ jobs:
           path: ./dist
 
   deploy:
-    name: Deploy
+    name: DeployToGithubPage
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
@@ -49,6 +49,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          
   deployToServer:
     name: DeployToServer
     needs: build
